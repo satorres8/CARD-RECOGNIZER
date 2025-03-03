@@ -1,7 +1,3 @@
-Below is an example **README** (in English) that explains how the Card Recognizer works, from setup to basic usage. You can adjust the content as needed for your specific project details or structure.
-
----
-
 # Card Recognizer
 
 **Card Recognizer** is a computer vision and deep learning project that identifies playing cards from a live camera feed or pre-captured images. It uses Python, OpenCV, and a neural network (TensorFlow or PyTorch) to classify each card by its rank and suit. The goal is to start with one specific deck and then generalize the model to recognize multiple different decks.
