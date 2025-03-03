@@ -1,0 +1,15 @@
+# Ignora el entorno virtual de Python
+venv/
+
+# Ignora archivos temporales de Python
+*.pyc
+__pycache__/
+
+# Ignora configuraciones locales de VSCode (opcional, si lo usas)
+.vscode/
+
+# Ignora archivos de sistema
+.DS_Store
+
+# Ignora otros archivos o carpetas que no quieras subir
+folders.txt
