@@ -51,7 +51,7 @@ The Card Recognizer project aims to detect and classify playing cards in real-ti
 
 1. **Clone this repository**:
    ```bash
-   git clone https://github.com/YourUsername/CardRecognizer.git
+   git clone https://github.com/satorres8/CARD-RECOGNIZER.git
    cd CardRecognizer
    ```
 
