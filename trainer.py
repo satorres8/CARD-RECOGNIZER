@@ -6,9 +6,9 @@ train_dir = "data/train"
 test_dir = "data/test"
 
 # Parámetros básicos
-IMG_SIZE = (1200, 1600)
+IMG_SIZE = (256, 256)
 BATCH_SIZE = 8
-EPOCHS = 5  # Empieza con pocas épocas y luego ajusta
+EPOCHS = 50  # Empieza con pocas épocas y luego ajusta
 
 # 1. Cargar dataset (ImageDataGenerator o image_dataset_from_directory en TF 2.x)
 train_ds = tf.keras.preprocessing.image_dataset_from_directory(
@@ -72,4 +72,4 @@ loss, acc = model.evaluate(test_ds)
 print(f"Test Accuracy: {acc:.2f}")
 
 # 7. Guardar el modelo
-model.save("card_recognizer.h5")
+model.save("card_recognizer.keras")
