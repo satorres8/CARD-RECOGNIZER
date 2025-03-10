@@ -1,4 +1,5 @@
 import tensorflow as tf
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 import os
 
 # Ajusta según tus rutas
@@ -8,9 +9,9 @@ test_dir = "data/test"
 # Parámetros básicos
 IMG_SIZE = (256, 256)
 BATCH_SIZE = 8
-EPOCHS = 50  # Empieza con pocas épocas y luego ajusta
+EPOCHS = 11  # Empieza con pocas épocas y luego ajusta
 
-# 1. Cargar dataset (ImageDataGenerator o image_dataset_from_directory en TF 2.x)
+# 1. Cargar dataset usando image_dataset_from_directory
 train_ds = tf.keras.preprocessing.image_dataset_from_directory(
     train_dir,
     labels='inferred',
@@ -29,10 +30,10 @@ test_ds = tf.keras.preprocessing.image_dataset_from_directory(
     shuffle=False
 )
 
-# 2. Normalizar imágenes (opcional: si no, tf.keras.applications.mobilenet_v2 preprocess)
-normalization_layer = tf.keras.layers.Rescaling(1./255)
-train_ds = train_ds.map(lambda x, y: (normalization_layer(x), y))
-test_ds = test_ds.map(lambda x, y: (normalization_layer(x), y))
+# 2. Aplicar preprocess_input de MobileNetV2
+#    (Eliminamos la capa Rescaling y en su lugar usamos el mapeo a preprocess_input)
+train_ds = train_ds.map(lambda x, y: (preprocess_input(x), y))
+test_ds = test_ds.map(lambda x, y: (preprocess_input(x), y))
 
 # 3. Definir un modelo base (MobileNetV2 pre-entrenado en ImageNet)
 base_model = tf.keras.applications.MobileNetV2(
@@ -45,8 +46,8 @@ base_model = tf.keras.applications.MobileNetV2(
 base_model.trainable = False
 
 # 4. Crear la parte final que hará la clasificación de las cartas
-#    Imagina que tenemos 52 clases (54 con Jokers)
-NUM_CLASSES = 54
+#    Ajusta el número de clases a tu dataset real
+NUM_CLASSES = 4  # Cambia a 54 si tienes 54 clases
 
 model = tf.keras.Sequential([
     base_model,
